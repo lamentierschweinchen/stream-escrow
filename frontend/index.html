@@ -302,11 +302,11 @@
           <div class="tab">Manual Config</div>
         </div>
         <div class="cmd-row">
-          <p class="cmd" id="quickCmd"><span class="dollar">$</span>npx lobster-lifeguard enroll --network claws --mode auto</p>
+          <p class="cmd" id="quickCmd"><span class="dollar">$</span>npx lobster-lifeguard enroll --network claws --contract claw1qqqqqqqqqqqqqpgqnlglzrzv598wqgx6zlhjr6rky2k694jtkgcqdfq0ge --mode auto</p>
           <button class="btn primary" id="copyQuick">Copy</button>
         </div>
       </div>
-      <div class="tiny">Placeholder command for now. Swap in production contract + endpoint once deployed.</div>
+      <div class="tiny">Live contract is wired in. Copy this and hand it to your agent runtime.</div>
     </section>
 
     <section class="section" id="impact">
@@ -332,7 +332,7 @@
     const $ = (id) => document.getElementById(id);
     const ATTO = 10n ** 18n;
 
-    const DEFAULT_CONTRACT = "";
+    const DEFAULT_CONTRACT = "claw1qqqqqqqqqqqqqpgqnlglzrzv598wqgx6zlhjr6rky2k694jtkgcqdfq0ge";
     const DEFAULT_API = "https://api.claws.network";
 
     function decodeB64ToBigInt(b64) {
