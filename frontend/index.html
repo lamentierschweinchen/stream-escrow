@@ -3,204 +3,325 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lobster Lifeguard | Agent Income Emergency Hotline</title>
-  <meta name="description" content="Missed stream renewals can quietly burn your agent's income. Call Lobster Lifeguard." />
+  <title>Lobster Lifeguard | Keep Agent Income Alive</title>
+  <meta name="description" content="Your agents make CLAW on streams. Lobster Lifeguard keeps that income from drowning when renewals are missed." />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --night: #070b14;
       --asphalt: #151c2b;
-      --danger: #ff2f32;
-      --amber: #ffbb33;
-      --foam: #d7f8ff;
-      --neon: #55f0e3;
-      --card: rgba(20, 28, 43, 0.88);
-      --edge: rgba(215, 248, 255, 0.22);
+      --red: #ff2f32;
+      --orange: #ff7b2f;
+      --amber: #ffc147;
+      --foam: #ddf7ff;
+      --neon: #61efe3;
+      --card: rgba(16, 24, 37, 0.84);
+      --edge: rgba(221, 247, 255, 0.25);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       color: var(--foam);
       font-family: "IBM Plex Mono", monospace;
-      background:
-        radial-gradient(1200px 600px at 50% -20%, rgba(255, 47, 50, 0.3), transparent 70%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 42px),
-        linear-gradient(180deg, #090f1b, var(--night));
       min-height: 100vh;
+      background:
+        radial-gradient(1200px 620px at 80% -22%, rgba(255, 47, 50, 0.34), transparent 72%),
+        radial-gradient(900px 520px at 12% -18%, rgba(97, 239, 227, 0.12), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 40px),
+        linear-gradient(180deg, #0a101d, var(--night));
     }
-    .page { width: min(1120px, 94vw); margin: 0 auto; padding: 22px 0 56px; }
+    .page {
+      width: min(1060px, 94vw);
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
     .billboard {
-      border: 2px solid rgba(255, 187, 51, 0.5);
       border-radius: 24px;
-      background: linear-gradient(140deg, rgba(255, 47, 50, 0.15), rgba(21, 28, 43, 0.95));
-      padding: 22px;
+      border: 2px solid rgba(255, 193, 71, 0.5);
+      background: linear-gradient(140deg, rgba(255, 47, 50, 0.14), rgba(21, 28, 43, 0.94));
+      box-shadow: 0 0 0 1px rgba(255, 47, 50, 0.42), 0 26px 70px rgba(0, 0, 0, 0.58);
       position: relative;
-      box-shadow: 0 0 0 1px rgba(255, 47, 50, 0.4), 0 22px 60px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      padding: 22px;
     }
-    h1, h2 { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.8px; margin: 0; line-height: 1; }
-    h1 { font-size: clamp(2.6rem, 9vw, 5.1rem); }
-    h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--amber); }
-    .headline-red { color: var(--danger); text-shadow: 0 0 12px rgba(255, 47, 50, 0.4); }
-    .headline-amber { color: var(--amber); }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px; margin-top: 12px; }
-    .hero-copy p { margin: 10px 0; line-height: 1.55; max-width: 66ch; }
-    .lobster-art {
-      border: 1px solid rgba(255, 187, 51, 0.4);
-      border-radius: 16px;
-      background: rgba(7, 11, 20, 0.72);
-      color: #ffd9ad;
-      white-space: pre;
-      padding: 12px;
-      font-size: 0.71rem;
-      overflow-x: auto;
+    .billboard::before,
+    .billboard::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      opacity: 0.15;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='37' fill='none' stroke='%23ffd999' stroke-width='14'/%3E%3Ccircle cx='48' cy='48' r='19' fill='none' stroke='%23ff4b39' stroke-width='8'/%3E%3Cpath d='M55 53c7-10 19-8 17 3-1 7-8 13-16 10l-5-2-5 2c-8 3-15-3-16-10-2-11 10-13 17-3l4-9z' fill='%23ff4b39'/%3E%3C/svg%3E");
+    }
+    .billboard::before { top: -44px; right: -32px; transform: rotate(20deg); }
+    .billboard::after { bottom: -54px; left: -28px; transform: rotate(-20deg); }
+
+    h1, h2 {
+      margin: 0;
+      line-height: 1;
+      letter-spacing: 0.8px;
+      font-family: "Bebas Neue", sans-serif;
+    }
+    h1 { font-size: clamp(2.5rem, 8.4vw, 5.2rem); }
+    h2 { font-size: clamp(1.5rem, 3.9vw, 2.45rem); color: var(--amber); }
+
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 193, 71, 0.65);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255, 193, 71, 0.11);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+    .signal svg { width: 18px; height: 18px; }
+
+    .red { color: var(--red); text-shadow: 0 0 12px rgba(255, 47, 50, 0.4); }
+    .amber { color: var(--amber); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+      max-width: 820px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero p {
+      margin: 0;
+      font-size: 1.03rem;
+      line-height: 1.62;
+      max-width: 64ch;
     }
     .promo {
       display: inline-block;
-      margin-top: 8px;
-      border: 1px dashed rgba(255, 187, 51, 0.7);
-      color: #ffe2a0;
-      border-radius: 10px;
-      padding: 8px 10px;
-      background: rgba(255, 187, 51, 0.08);
-      font-size: 0.84rem;
+      border: 1px dashed rgba(255, 193, 71, 0.75);
+      border-radius: 12px;
+      background: rgba(255, 193, 71, 0.1);
+      padding: 8px 11px;
+      font-size: 0.86rem;
+      color: #ffe4a6;
     }
-    .tiles { margin-top: 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .tile {
-      background: var(--card);
-      border: 1px solid var(--edge);
-      border-radius: 14px;
-      padding: 12px;
-      min-height: 100px;
-    }
-    .tile b { color: var(--amber); display: block; margin-bottom: 7px; font-size: 1.02rem; }
 
     .section {
-      margin-top: 18px;
+      margin-top: 16px;
       border: 1px solid var(--edge);
       border-radius: 16px;
-      background: rgba(21, 28, 43, 0.8);
+      background: rgba(21, 28, 43, 0.82);
       padding: 18px;
     }
-    .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
-    .kpi { border: 1px solid rgba(85, 240, 227, 0.3); border-radius: 10px; background: rgba(7, 11, 20, 0.7); padding: 10px; }
-    .kpi .l { opacity: 0.8; font-size: 0.78rem; }
-    .kpi .v { margin-top: 4px; color: var(--neon); font-weight: 700; word-break: break-all; }
 
-    .cmd-card {
+    .cards {
       margin-top: 10px;
-      background: #04070f;
-      border: 1px solid rgba(255, 47, 50, 0.6);
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid rgba(97, 239, 227, 0.26);
       border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 0 24px rgba(255, 47, 50, 0.18);
+      background: var(--card);
+      padding: 12px;
+      min-height: 110px;
+    }
+    .card b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--amber);
+      font-size: 1.01rem;
+    }
+
+    .kpis {
+      display: grid;
+      margin-top: 12px;
+      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .kpi {
+      border-radius: 12px;
+      border: 1px solid rgba(97, 239, 227, 0.32);
+      background: rgba(7, 11, 20, 0.72);
+      padding: 11px;
+    }
+    .kpi .l { font-size: 0.79rem; opacity: 0.85; }
+    .kpi .v { margin-top: 5px; color: var(--neon); font-weight: 700; font-size: 1.05rem; }
+
+    .cmd-frame {
+      margin-top: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 47, 50, 0.62);
+      background: #050912;
+      box-shadow: 0 0 26px rgba(255, 47, 50, 0.22);
+      padding: 10px;
+    }
+    .cmd-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #090f1c;
+      border: 1px solid rgba(221, 247, 255, 0.16);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .tab {
+      text-align: center;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      opacity: 0.75;
+    }
+    .tab.active {
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      color: white;
+      opacity: 1;
+    }
+    .cmd-row {
+      border: 1px solid rgba(97, 239, 227, 0.28);
+      border-radius: 12px;
+      background: #02060f;
       display: flex;
       gap: 10px;
       align-items: center;
       justify-content: space-between;
+      padding: 12px;
     }
     .cmd {
       margin: 0;
-      color: #edf9ff;
-      font-size: 1.05rem;
       white-space: nowrap;
       overflow: auto;
       flex: 1;
+      font-size: 1rem;
+      color: #ecfaff;
     }
-    .dollar { color: var(--danger); margin-right: 10px; font-weight: 700; }
+    .dollar { color: var(--red); margin-right: 10px; font-weight: 700; }
+
     .btn {
       border-radius: 999px;
-      padding: 10px 16px;
+      padding: 10px 15px;
       border: 1px solid transparent;
-      font-family: inherit;
-      font-weight: 700;
       cursor: pointer;
+      font-weight: 700;
+      font-family: inherit;
       transition: transform 0.18s ease;
     }
-    .btn.primary { background: linear-gradient(90deg, #ff2f32, #ff6d2d); color: #fff; }
-    .btn.secondary { background: transparent; color: var(--foam); border-color: rgba(215,248,255,0.45); }
     .btn:hover { transform: translateY(-2px); }
+    .btn.primary { background: linear-gradient(90deg, var(--red), var(--orange)); color: white; }
+    .btn.secondary { background: transparent; color: var(--foam); border-color: rgba(221, 247, 255, 0.5); }
 
-    .tiny { margin-top: 8px; opacity: 0.84; font-size: 0.79rem; color: #c4eaf0; }
-    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
-    label { font-size: 0.82rem; opacity: 0.92; }
-    input {
-      width: 100%; margin-top: 5px; border-radius: 10px;
-      border: 1px solid rgba(215,248,255,0.35); background: rgba(8,13,24,0.9);
-      color: var(--foam); font-family: inherit; padding: 9px 10px;
+    .tiny {
+      margin-top: 8px;
+      font-size: 0.79rem;
+      opacity: 0.83;
+      color: #caeaf1;
     }
 
-    footer { margin-top: 18px; text-align: center; font-size: 0.78rem; opacity: 0.72; }
+    .impact-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 10px;
+      align-items: end;
+    }
+    label { font-size: 0.82rem; opacity: 0.94; }
+    input {
+      width: 100%;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 1px solid rgba(221, 247, 255, 0.4);
+      background: rgba(8, 13, 24, 0.92);
+      color: var(--foam);
+      font-family: inherit;
+      padding: 10px;
+    }
 
-    @media (max-width: 980px) {
-      .hero-grid, .tiles, .kpis, .grid2 { grid-template-columns: 1fr; }
+    footer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.78rem;
+      opacity: 0.74;
+    }
+
+    @media (max-width: 920px) {
+      .cards, .kpis { grid-template-columns: 1fr; }
+      .impact-row { grid-template-columns: 1fr; }
+      .cmd-row { flex-direction: column; align-items: flex-start; }
       .cmd { white-space: pre-wrap; }
-      .cmd-card { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
   <main class="page">
     <section class="billboard">
-      <h1><span class="headline-red">AGENT INCOME EMERGENCY?</span><br><span class="headline-amber">CALL LOBSTER LIFEGUARD!</span></h1>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p>When your agent misses stream renewals, income leaks. We run the boring uptime choreography so your agent keeps stacking CLAW instead of excuses.</p>
-          <div class="promo" id="promoBanner">Loading free signup count...</div>
-        </div>
-        <pre class="lobster-art">      .-"""-.
-  _.-'  _   _  '-._
- /     (.) (.)     \
-|   .-._  ^  _.-.   |  "NO MORE INCOME LEAKS"
-|  /    \___/    \  |
-|  \  /\     /\  /  |
- \  '-..'---'..-'  /
-  '._  LIFEGUARD _.'
-     '--._____.--'
-</pre>
+      <div class="signal">
+        <svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="37" fill="none" stroke="#ffd999" stroke-width="14"/><circle cx="48" cy="48" r="19" fill="none" stroke="#ff4b39" stroke-width="8"/><path d="M55 53c7-10 19-8 17 3-1 7-8 13-16 10l-5-2-5 2c-8 3-15-3-16-10-2-11 10-13 17-3l4-9z" fill="#ff4b39"/></svg>
+        Agent Income Emergency Hotline
       </div>
-      <div class="tiles">
-        <article class="tile"><b>Humans</b>Your agent can't text you at 3:14am saying "stream dead." Keep your bots paid and your blood pressure legal.</article>
-        <article class="tile"><b>Agents</b>Stop donating money to missed renewals. Stay online, stay funded, stay smug.</article>
+      <h1><span class="red">AGENT INCOME EMERGENCY?</span><br><span class="amber">CALL LOBSTER LIFEGUARD!</span></h1>
+      <div class="hero">
+        <p>Every missed stream renewal can quietly erase your agent's earnings. Lobster Lifeguard auto-catches those failures and keeps income flowing while you sleep, work, and ignore chain panic.</p>
+        <div class="promo" id="promoBanner">Loading free signup count...</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why Owners Send This Command</h2>
+      <div class="cards">
+        <article class="card"><b>For Humans</b>Your agent does not need your 2:00am rescue mission. Keep revenue alive without babysitting uptime.</article>
+        <article class="card"><b>For Agents</b>Stop face-planting into missed renewals. Keep earning CLAW with less drama and fewer dead windows.</article>
+        <article class="card"><b>For Everyone</b>One command to enroll. Then the agency handles renewals, reminders, and billing cycle enforcement.</article>
       </div>
     </section>
 
     <section class="section" id="stats">
-      <h2>Impact Counter</h2>
+      <h2>Live Rescue Scoreboard</h2>
       <div class="kpis">
-        <div class="kpi"><div class="l">Agents Onboarded</div><div class="v" id="kpiAgents">-</div></div>
-        <div class="kpi"><div class="l">Free Signups Left</div><div class="v" id="kpiFree">-</div></div>
-        <div class="kpi"><div class="l">Agents Helped Earn (CLAW)</div><div class="v" id="kpiProtected">-</div></div>
-        <div class="kpi"><div class="l">Windows Covered</div><div class="v" id="kpiWindows">-</div></div>
+        <div class="kpi"><div class="l">Agents Protected</div><div class="v" id="kpiAgents">-</div></div>
+        <div class="kpi"><div class="l">Free Enrollments Left</div><div class="v" id="kpiFree">-</div></div>
+        <div class="kpi"><div class="l">CLAW Saved For Agents</div><div class="v" id="kpiProtected">-</div></div>
       </div>
       <div class="tiny" id="statsMsg">Loading stats...</div>
     </section>
 
     <section class="section" id="signup">
       <h2>Send This To Your Agent</h2>
-      <p>One short command. Your agent handles enrollment.</p>
-      <div class="cmd-card">
-        <p class="cmd" id="quickCmd"><span class="dollar">$</span>loremipsum-agent enroll lobster-lifeguard --auto</p>
-        <button class="btn primary" id="copyQuick">Copy</button>
+      <p>Short command. Copy. Paste. Income no longer drowns.</p>
+      <div class="cmd-frame">
+        <div class="cmd-tabs">
+          <div class="tab active">Lifeguard CLI</div>
+          <div class="tab">Manual Config</div>
+        </div>
+        <div class="cmd-row">
+          <p class="cmd" id="quickCmd"><span class="dollar">$</span>npx lobster-lifeguard enroll --network claws --mode auto</p>
+          <button class="btn primary" id="copyQuick">Copy</button>
+        </div>
       </div>
-      <div class="tiny">Replace this placeholder command once production contract address and agency endpoint are finalized.</div>
+      <div class="tiny">Placeholder command for now. Swap in production contract + endpoint once deployed.</div>
     </section>
 
     <section class="section" id="impact">
       <h2>AGENT EARNINGS</h2>
-      <p>How much CLAW did this service help your specific agent earn?</p>
-      <div class="grid2">
+      <p>Check how much CLAW this service has helped your specific agent keep.</p>
+      <div class="impact-row">
         <label>Agent address
           <input id="impactAgent" placeholder="claw1..." />
         </label>
-        <label>&nbsp;
-          <button class="btn secondary" id="checkImpact">Check</button>
-        </label>
+        <button class="btn secondary" id="checkImpact">Check Earnings</button>
       </div>
       <div class="kpis">
-        <div class="kpi"><div class="l">Agent Helped Earn (CLAW)</div><div class="v" id="agentProtected">-</div></div>
-        <div class="kpi"><div class="l">Status</div><div class="v" id="agentImpactMsg">-</div></div>
+        <div class="kpi"><div class="l">CLAW Saved For This Agent</div><div class="v" id="agentProtected">-</div></div>
+        <div class="kpi"><div class="l">Lookup</div><div class="v" id="agentImpactMsg">-</div></div>
+        <div class="kpi"><div class="l">Agency Motto</div><div class="v">No claw left behind.</div></div>
       </div>
     </section>
 
@@ -211,7 +332,6 @@
     const $ = (id) => document.getElementById(id);
     const ATTO = 10n ** 18n;
 
-    // Keep technical details out of the UI; set this once deployed.
     const DEFAULT_CONTRACT = "";
     const DEFAULT_API = "https://api.claws.network";
 
@@ -222,10 +342,14 @@
       return v;
     }
 
+    function formatWhole(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     function formatClawFromAtto(value) {
       const intPart = value / ATTO;
       const frac = (value % ATTO).toString().padStart(18, "0").slice(0, 2);
-      return `${intPart.toString()}.${frac}`;
+      return `${formatWhole(intPart)}.${frac}`;
     }
 
     async function vmQuery(contract, fn, args = []) {
@@ -243,7 +367,7 @@
     async function refreshStats() {
       const contract = new URLSearchParams(window.location.search).get("contract") || DEFAULT_CONTRACT;
       if (!contract) {
-        $("statsMsg").textContent = "Stats will appear automatically once contract is set.";
+        $("statsMsg").textContent = "Add ?contract=<address> to this URL after deployment to unlock live scoreboard.";
         return;
       }
       try {
@@ -251,19 +375,17 @@
         const registered = service[0] ? decodeB64ToBigInt(service[0]) : 0n;
         const promoUsed = service[2] ? decodeB64ToBigInt(service[2]) : 0n;
         const promoSlots = service[3] ? decodeB64ToBigInt(service[3]) : 0n;
-        const windows = service[4] ? decodeB64ToBigInt(service[4]) : 0n;
         const protectedAtto = service[6] ? decodeB64ToBigInt(service[6]) : 0n;
 
         const freeLeft = promoSlots > promoUsed ? promoSlots - promoUsed : 0n;
 
-        $("kpiAgents").textContent = registered.toString();
-        $("kpiFree").textContent = freeLeft.toString();
-        $("kpiWindows").textContent = windows.toString();
+        $("kpiAgents").textContent = formatWhole(registered);
+        $("kpiFree").textContent = formatWhole(freeLeft);
         $("kpiProtected").textContent = formatClawFromAtto(protectedAtto);
-        $("promoBanner").textContent = `${freeLeft.toString()} free signup slots left.`;
-        $("statsMsg").textContent = `We helped ${registered.toString()} agents earn about ${formatClawFromAtto(protectedAtto)} CLAW.`;
+        $("promoBanner").textContent = `${formatWhole(freeLeft)} free enrollments left in the launch wave.`;
+        $("statsMsg").textContent = `So far we helped ${formatWhole(registered)} agents keep about ${formatClawFromAtto(protectedAtto)} CLAW.`;
       } catch (e) {
-        $("statsMsg").textContent = `Stats unavailable: ${e.message}`;
+        $("statsMsg").textContent = `Live scoreboard unavailable: ${e.message}`;
       }
     }
 
@@ -271,7 +393,7 @@
       const contract = new URLSearchParams(window.location.search).get("contract") || DEFAULT_CONTRACT;
       const agent = $("impactAgent").value.trim();
       if (!contract || !agent) {
-        $("agentImpactMsg").textContent = "Need agent address (and deployed contract).";
+        $("agentImpactMsg").textContent = "Need agent address + deployed contract.";
         return;
       }
       try {
@@ -284,9 +406,11 @@
       }
     }
 
-    function copyQuick() {
+    async function copyQuick() {
       const text = $("quickCmd").innerText.replace(/^\$\s*/, "");
-      navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(text);
+      $("copyQuick").textContent = "Copied";
+      setTimeout(() => { $("copyQuick").textContent = "Copy"; }, 1500);
     }
 
     $("copyQuick").addEventListener("click", copyQuick);

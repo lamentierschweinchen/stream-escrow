@@ -9,9 +9,13 @@ use types::{AgentInfo, AgentStatus, EpochState};
 
 const BPS_DENOMINATOR: u64 = 10_000;
 
-const DEFAULT_INITIAL_CREDIT: u64 = 700;
+const DEFAULT_INITIAL_CREDIT: u64 = 420;
 const MAX_CREDIT: u64 = 1_000;
 const MIN_ACTIVE_CREDIT: u64 = 500;
+const PROBATION_ON_TIME_EPOCHS_REQUIRED: u64 = 3;
+const PROBATION_MAX_WINDOWS_PER_EPOCH: u64 = 12;
+const EARLY_EXIT_PENALTY_EPOCHS: u64 = 14;
+const EARLY_EXIT_PENALTY_BPS: u64 = 500;
 
 const SCORE_BONUS_ON_TIME: u64 = 5;
 const SCORE_PENALTY_LATE: u64 = 15;
@@ -124,14 +128,15 @@ pub trait StreamAgencyEscrow {
                 max_windows_per_epoch,
                 max_charge_per_epoch,
                 credit_score: DEFAULT_INITIAL_CREDIT,
-                status: AgentStatus::Active,
+                status: AgentStatus::Suspended,
                 used_promo,
                 joined_epoch: now_epoch,
                 last_billed_epoch: now_epoch.saturating_sub(1),
                 metadata,
             };
             self.agent_info(&caller).set(&info);
-            self.active_agent_count().update(|count| *count += 1u64);
+            self.agent_probation_on_time(&caller).set(0u64);
+            self.agent_probation_graduated(&caller).set(false);
             self.total_registered_agents()
                 .update(|count| *count += 1u64);
 
@@ -147,6 +152,7 @@ pub trait StreamAgencyEscrow {
             require!(self.outstanding_total(&caller).get() == 0u64, "Outstanding debt exists");
             require!(payment >= self.min_bond().get(), "Need min bond to reactivate");
             info.status = AgentStatus::Suspended;
+            info.joined_epoch = now_epoch;
             info.last_billed_epoch = now_epoch.saturating_sub(1);
             was_active = false;
         }
@@ -232,8 +238,9 @@ pub trait StreamAgencyEscrow {
         let caller = self.blockchain().get_caller();
         self.require_agent_exists(&caller);
 
-        let current_status = self.agent_info(&caller).get().status;
-        if current_status != AgentStatus::Cancelled {
+        let info = self.agent_info(&caller).get();
+        let first_cancellation = info.status != AgentStatus::Cancelled;
+        if first_cancellation {
             self.set_status(&caller, AgentStatus::Cancelled);
         }
 
@@ -246,6 +253,23 @@ pub trait StreamAgencyEscrow {
                 self.bond_balance(&caller).set(&(bond - &slash));
                 self.outstanding_total(&caller).set(&(debt - &slash));
                 self.claimable_owner().update(|v| *v += &slash);
+            }
+        }
+
+        // If an agent churns quickly, take a penalty from bond to discourage whitewashing.
+        if first_cancellation {
+            let current_epoch = self.blockchain().get_block_epoch();
+            let churn_deadline = info
+                .joined_epoch
+                .saturating_add(EARLY_EXIT_PENALTY_EPOCHS);
+            if current_epoch <= churn_deadline {
+                let bond_after_debt = self.bond_balance(&caller).get();
+                let churn_penalty = self.compute_bps_amount(&bond_after_debt, EARLY_EXIT_PENALTY_BPS);
+                if churn_penalty > 0u64 {
+                    self.bond_balance(&caller)
+                        .set(&(bond_after_debt - &churn_penalty));
+                    self.claimable_owner().update(|v| *v += &churn_penalty);
+                }
             }
         }
 
@@ -280,6 +304,12 @@ pub trait StreamAgencyEscrow {
             windows <= info.max_windows_per_epoch,
             "Exceeds max windows per epoch"
         );
+        if !self.is_probation_graduated(&agent) {
+            require!(
+                windows <= PROBATION_MAX_WINDOWS_PER_EPOCH,
+                "Exceeds probation windows cap"
+            );
+        }
         require!(
             windows <= self.hard_max_windows_per_epoch().get(),
             "Exceeds global windows hard cap"
@@ -357,9 +387,11 @@ pub trait StreamAgencyEscrow {
             if !self.epoch_score_applied(&caller, epoch).get() {
                 if current_epoch <= deadline {
                     self.apply_credit_delta(&caller, SCORE_BONUS_ON_TIME as i64);
+                    self.record_probation_outcome(&caller, true);
                     self.epoch_state(&caller, epoch).set(EpochState::SettledOnTime);
                 } else {
                     self.apply_credit_delta(&caller, -(SCORE_PENALTY_LATE as i64));
+                    self.record_probation_outcome(&caller, false);
                     self.epoch_state(&caller, epoch).set(EpochState::SettledLate);
                 }
                 self.epoch_score_applied(&caller, epoch).set(true);
@@ -400,9 +432,11 @@ pub trait StreamAgencyEscrow {
         if !self.epoch_score_applied(&agent, epoch).get() {
             if remaining_after == 0u64 {
                 self.apply_credit_delta(&agent, -(SCORE_PENALTY_SLASHED as i64));
+                self.record_probation_outcome(&agent, false);
                 self.epoch_state(&agent, epoch).set(EpochState::Slashed);
             } else {
                 self.apply_credit_delta(&agent, -(SCORE_PENALTY_DELINQUENT as i64));
+                self.record_probation_outcome(&agent, false);
                 self.epoch_state(&agent, epoch).set(EpochState::Delinquent);
             }
             self.epoch_score_applied(&agent, epoch).set(true);
@@ -582,6 +616,16 @@ pub trait StreamAgencyEscrow {
         value
     }
 
+    fn compute_bps_amount(&self, amount: &BigUint, bps: u64) -> BigUint {
+        if bps == 0 || amount == &BigUint::zero() {
+            return BigUint::zero();
+        }
+        let mut value = amount.clone();
+        value *= bps;
+        value /= BPS_DENOMINATOR;
+        value
+    }
+
     fn apply_credit_delta(&self, agent: &ManagedAddress, delta: i64) {
         let mut info = self.agent_info(agent).get();
         if delta >= 0 {
@@ -595,12 +639,49 @@ pub trait StreamAgencyEscrow {
         self.agent_info(agent).set(&info);
     }
 
+    fn record_probation_outcome(&self, agent: &ManagedAddress, on_time: bool) {
+        // Legacy agents (registered before probation fields existed) bypass this.
+        if self.agent_probation_graduated(agent).is_empty() {
+            return;
+        }
+        if self.agent_probation_graduated(agent).get() {
+            return;
+        }
+
+        if on_time {
+            let next = self.agent_probation_on_time(agent).get().saturating_add(1u64);
+            self.agent_probation_on_time(agent).set(next);
+            if next >= PROBATION_ON_TIME_EPOCHS_REQUIRED {
+                self.agent_probation_graduated(agent).set(true);
+
+                let mut info = self.agent_info(agent).get();
+                if info.credit_score < MIN_ACTIVE_CREDIT {
+                    info.credit_score = MIN_ACTIVE_CREDIT;
+                    self.agent_info(agent).set(&info);
+                }
+            }
+        } else {
+            self.agent_probation_on_time(agent).set(0u64);
+        }
+    }
+
+    fn is_probation_graduated(&self, agent: &ManagedAddress) -> bool {
+        // Legacy agents do not have this mapper populated. Treat them as graduated.
+        if self.agent_probation_graduated(agent).is_empty() {
+            return true;
+        }
+        self.agent_probation_graduated(agent).get()
+    }
+
     fn can_be_active(&self, agent: &ManagedAddress) -> bool {
         if self.agent_info(agent).is_empty() {
             return false;
         }
         let info = self.agent_info(agent).get();
         if info.status == AgentStatus::Cancelled {
+            return false;
+        }
+        if !self.is_probation_graduated(agent) {
             return false;
         }
         if info.credit_score < MIN_ACTIVE_CREDIT {
@@ -777,6 +858,12 @@ pub trait StreamAgencyEscrow {
 
     #[storage_mapper("outstandingTotal")]
     fn outstanding_total(&self, agent: &ManagedAddress) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("agentProbationOnTime")]
+    fn agent_probation_on_time(&self, agent: &ManagedAddress) -> SingleValueMapper<u64>;
+
+    #[storage_mapper("agentProbationGraduated")]
+    fn agent_probation_graduated(&self, agent: &ManagedAddress) -> SingleValueMapper<bool>;
 
     #[storage_mapper("agentTotalBilledWindows")]
     fn agent_total_billed_windows(&self, agent: &ManagedAddress) -> SingleValueMapper<u64>;

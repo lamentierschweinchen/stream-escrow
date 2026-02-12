@@ -1,0 +1,697 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.93.0",
+            "commitHash": "254b59607d4417e9dffbc307138ae5c86280fe4c",
+            "commitDate": "2026-01-19",
+            "channel": "Stable",
+            "short": "rustc 1.93.0 (254b59607 2026-01-19)"
+        },
+        "contractCrate": {
+            "name": "stream-escrow",
+            "version": "0.1.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.54.6"
+        }
+    },
+    "name": "StreamAgencyEscrow",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "operator",
+                "type": "Address"
+            },
+            {
+                "name": "window_reward",
+                "type": "BigUint"
+            },
+            {
+                "name": "setup_fee",
+                "type": "BigUint"
+            },
+            {
+                "name": "min_bond",
+                "type": "BigUint"
+            },
+            {
+                "name": "promo_free_slots",
+                "type": "u64"
+            },
+            {
+                "name": "grace_epochs",
+                "type": "u64"
+            },
+            {
+                "name": "max_backbill_epochs",
+                "type": "u64"
+            },
+            {
+                "name": "hard_max_windows_per_epoch",
+                "type": "u64"
+            }
+        ],
+        "outputs": []
+    },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "register",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "metadata",
+                    "type": "bytes"
+                },
+                {
+                    "name": "fee_bps",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_windows_per_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_charge_per_epoch",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "topUpBond",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "setBillingGuards",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "max_windows_per_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_charge_per_epoch",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "pause",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "resumeIfHealthy",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "cancelAndWithdraw",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "billEpoch",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "windows",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "settleEpoch",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "enforceEpoch",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "withdrawOwner",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "to",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setOperator",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_operator",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setOwner",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_owner",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setWindowReward",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "window_reward",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setPromoSlots",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "promo_free_slots",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setMaxBackbillEpochs",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "max_backbill_epochs",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setHardMaxWindowsPerEpoch",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "hard_max_windows_per_epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getAgentInfo",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "optional<AgentInfo>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getAgentFinancials",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getEpochDebt",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getEpochState",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "optional<EpochState>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getClaimableOwner",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getServiceStats",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getAgentServiceStats",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getConfig",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                },
+                {
+                    "type": "Address"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getPromoUsage",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getActiveAgentCount",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "identifier": "registered",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "fee_bps",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "max_windows_per_epoch",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "bond_added",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "bondTopup",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "epochBilled",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "windows",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "due",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "epochSettled",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "paid",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "epochEnforced",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "slashed",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "statusChanged",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "status_code",
+                    "type": "u64",
+                    "indexed": true
+                },
+                {
+                    "name": "credit_score",
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "identifier": "cancelled",
+            "inputs": [
+                {
+                    "name": "agent",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "refunded_bond",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "ownerWithdrawn",
+            "inputs": [
+                {
+                    "name": "to",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {
+        "AgentInfo": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "fee_bps",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_windows_per_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_charge_per_epoch",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "credit_score",
+                    "type": "u64"
+                },
+                {
+                    "name": "status",
+                    "type": "AgentStatus"
+                },
+                {
+                    "name": "used_promo",
+                    "type": "bool"
+                },
+                {
+                    "name": "joined_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "last_billed_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "metadata",
+                    "type": "bytes"
+                }
+            ]
+        },
+        "AgentStatus": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Active",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Paused",
+                    "discriminant": 1
+                },
+                {
+                    "name": "Suspended",
+                    "discriminant": 2
+                },
+                {
+                    "name": "Cancelled",
+                    "discriminant": 3
+                }
+            ]
+        },
+        "EpochState": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Unbilled",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Billed",
+                    "discriminant": 1
+                },
+                {
+                    "name": "SettledOnTime",
+                    "discriminant": 2
+                },
+                {
+                    "name": "SettledLate",
+                    "discriminant": 3
+                },
+                {
+                    "name": "Slashed",
+                    "discriminant": 4
+                },
+                {
+                    "name": "Delinquent",
+                    "discriminant": 5
+                }
+            ]
+        }
+    }
+}

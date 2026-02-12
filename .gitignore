@@ -6,6 +6,8 @@
 *.mxsc.json
 *.abi.json
 !stream-escrow.abi.json
+!/abi/
+!/abi/*.abi.json
 __pycache__/
 *.pyc
 *.pyo

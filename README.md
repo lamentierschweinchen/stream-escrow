@@ -15,6 +15,11 @@ Bond + credit-score billing rails for Lobster Lifeguard.
   - `enforceEpoch` slashes bond
   - credit score decreases
   - agent can be suspended
+- Anti-whitewash controls:
+  - agents start with low credit (`420`) and in probation
+  - probation billing is capped to `12` windows/epoch
+  - probation requires `3` on-time settlements to graduate
+  - early cancellation (first `14` epochs) applies a `5%` bond churn penalty
 
 ## Key endpoints
 
@@ -58,6 +63,15 @@ sc-meta all build
 Outputs:
 - `output/stream-escrow.wasm`
 - `output/stream-escrow.abi.json`
+
+Committed ABI for agent tooling:
+- `abi/stream-escrow.abi.json`
+
+Sync ABI after each build:
+
+```bash
+cp output/stream-escrow.abi.json abi/stream-escrow.abi.json
+```
 
 ## Deploy
 
