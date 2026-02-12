@@ -205,6 +205,11 @@ def main() -> int:
     p_withdraw.add_argument("--to", required=True)
     p_withdraw.add_argument("--contract", default="")
 
+    p_set_owner = sub.add_parser("set-owner")
+    p_set_owner.add_argument("--pem", required=True)
+    p_set_owner.add_argument("--new-owner", required=True)
+    p_set_owner.add_argument("--contract", default="")
+
     p_query = sub.add_parser("query")
     p_query.add_argument("--function", required=True)
     p_query.add_argument("--arguments", nargs="*", default=[])
@@ -315,6 +320,15 @@ def main() -> int:
             pem=args.pem,
             function="withdrawOwner",
             arguments=[args.amount_atto, args.to],
+            contract=args.contract or None,
+        )
+        return 0
+
+    if args.cmd == "set-owner":
+        call(
+            pem=args.pem,
+            function="setOwner",
+            arguments=[args.new_owner],
             contract=args.contract or None,
         )
         return 0

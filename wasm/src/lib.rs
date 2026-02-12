@@ -6,9 +6,9 @@
 
 // Init:                                 1
 // Upgrade:                              1
-// Endpoints:                           23
+// Endpoints:                           24
 // Async Callback (empty):               1
-// Total number of exported functions:  26
+// Total number of exported functions:  27
 
 #![no_std]
 
@@ -31,6 +31,7 @@ multiversx_sc_wasm_adapter::endpoints! {
         enforceEpoch => enforce_epoch
         withdrawOwner => withdraw_owner
         setOperator => set_operator
+        setOwner => set_owner
         setWindowReward => set_window_reward
         setPromoSlots => set_promo_slots
         setMaxBackbillEpochs => set_max_backbill_epochs

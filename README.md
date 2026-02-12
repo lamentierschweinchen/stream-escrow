@@ -30,6 +30,7 @@ Bond + credit-score billing rails for Lobster Lifeguard.
 - `settleEpoch(epoch)` payable (agent)
 - `enforceEpoch(agent, epoch)`
 - `withdrawOwner(amount, to)` owner-only
+- `setOwner(new_owner)` owner-only
 - `setOperator(new_operator)` owner-only
 - `setWindowReward(window_reward)` owner-only
 - `setPromoSlots(slots)` owner-only

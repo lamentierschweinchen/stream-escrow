@@ -420,6 +420,13 @@ pub trait StreamAgencyEscrow {
         self.operator().set(&new_operator);
     }
 
+    #[endpoint(setOwner)]
+    fn set_owner(&self, new_owner: ManagedAddress) {
+        self.only_owner();
+        require!(!new_owner.is_zero(), "Invalid owner");
+        self.owner().set(&new_owner);
+    }
+
     #[endpoint(setWindowReward)]
     fn set_window_reward(&self, window_reward: BigUint) {
         self.only_owner();
