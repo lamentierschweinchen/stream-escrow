@@ -4,11 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lobster Lifeguard | Agent Income Emergency Hotline</title>
-  <meta name="description" content="A dramatic conversion funnel for humans who run agents. Give your agent one command and protect stream income." />
-  <meta property="og:title" content="Lobster Lifeguard — Agent Income Emergency Hotline" />
-  <meta property="og:description" content="Missed stream renewals can ruin your agent's income. Send one command. Keep earning." />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Missed stream renewals can quietly burn your agent's income. Call Lobster Lifeguard." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -23,9 +19,7 @@
       --card: rgba(20, 28, 43, 0.88);
       --edge: rgba(215, 248, 255, 0.22);
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       color: var(--foam);
@@ -36,83 +30,22 @@
         linear-gradient(180deg, #090f1b, var(--night));
       min-height: 100vh;
     }
-
-    .page {
-      width: min(1180px, 94vw);
-      margin: 0 auto;
-      padding: 18px 0 54px;
-    }
-
+    .page { width: min(1120px, 94vw); margin: 0 auto; padding: 22px 0 56px; }
     .billboard {
       border: 2px solid rgba(255, 187, 51, 0.5);
       border-radius: 24px;
-      background:
-        linear-gradient(140deg, rgba(255, 47, 50, 0.15), rgba(21, 28, 43, 0.95)),
-        linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
-      padding: 20px;
+      background: linear-gradient(140deg, rgba(255, 47, 50, 0.15), rgba(21, 28, 43, 0.95));
+      padding: 22px;
       position: relative;
-      overflow: hidden;
       box-shadow: 0 0 0 1px rgba(255, 47, 50, 0.4), 0 22px 60px rgba(0, 0, 0, 0.55);
     }
-
-    .hazard {
-      position: absolute;
-      inset: auto -120px -90px auto;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 187, 51, 0.35), transparent 70%);
-      transform: rotate(8deg);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      color: var(--amber);
-      font-size: 0.86rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    h1, h2 {
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 0.8px;
-      margin: 0;
-      line-height: 1;
-    }
-
-    h1 { font-size: clamp(2.5rem, 9vw, 5.2rem); }
-    h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); color: var(--amber); }
-
-    .headline-red { color: var(--danger); text-shadow: 0 0 12px rgba(255, 47, 50, 0.38); }
+    h1, h2 { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.8px; margin: 0; line-height: 1; }
+    h1 { font-size: clamp(2.6rem, 9vw, 5.1rem); }
+    h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--amber); }
+    .headline-red { color: var(--danger); text-shadow: 0 0 12px rgba(255, 47, 50, 0.4); }
     .headline-amber { color: var(--amber); }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      margin-top: 12px;
-      align-items: start;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-copy p {
-      margin: 10px 0;
-      line-height: 1.55;
-      max-width: 68ch;
-    }
-
-    .scream-box {
-      border: 1px solid rgba(85, 240, 227, 0.45);
-      border-radius: 16px;
-      background: rgba(7, 11, 20, 0.72);
-      padding: 12px;
-      font-size: 0.95rem;
-      line-height: 1.45;
-    }
-
-    .scream-box b { color: var(--amber); }
-
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px; margin-top: 12px; }
+    .hero-copy p { margin: 10px 0; line-height: 1.55; max-width: 66ch; }
     .lobster-art {
       border: 1px solid rgba(255, 187, 51, 0.4);
       border-radius: 16px;
@@ -123,125 +56,6 @@
       font-size: 0.71rem;
       overflow-x: auto;
     }
-
-    .cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 10px 16px;
-      border: 1px solid transparent;
-      font-family: inherit;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, #ff2f32, #ff6d2d);
-      color: #fff;
-      box-shadow: 0 8px 22px rgba(255, 47, 50, 0.32);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      color: var(--foam);
-      border-color: rgba(215, 248, 255, 0.42);
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .stack {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .tile {
-      background: var(--card);
-      border: 1px solid var(--edge);
-      border-radius: 14px;
-      padding: 12px;
-      min-height: 108px;
-    }
-
-    .tile b {
-      color: var(--amber);
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.03rem;
-    }
-
-    .section {
-      margin-top: 18px;
-      border: 1px solid var(--edge);
-      border-radius: 16px;
-      background: rgba(21, 28, 43, 0.8);
-      padding: 18px;
-    }
-
-    .grid2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    label { font-size: 0.82rem; opacity: 0.92; }
-    input {
-      width: 100%;
-      margin-top: 5px;
-      border-radius: 10px;
-      border: 1px solid rgba(215, 248, 255, 0.35);
-      background: rgba(8, 13, 24, 0.9);
-      color: var(--foam);
-      font-family: inherit;
-      padding: 9px 10px;
-    }
-
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .kpi {
-      border: 1px solid rgba(85, 240, 227, 0.3);
-      border-radius: 10px;
-      background: rgba(7, 11, 20, 0.7);
-      padding: 10px;
-    }
-
-    .kpi .l { opacity: 0.8; font-size: 0.78rem; }
-    .kpi .v { margin-top: 4px; color: var(--neon); font-weight: 700; word-break: break-all; }
-
-    textarea {
-      width: 100%;
-      min-height: 190px;
-      margin-top: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(215, 248, 255, 0.33);
-      background: rgba(8, 13, 24, 0.93);
-      color: #e8fafe;
-      font-family: inherit;
-      padding: 10px;
-      line-height: 1.46;
-    }
-
-    .tiny {
-      margin-top: 8px;
-      opacity: 0.84;
-      font-size: 0.78rem;
-      color: #c4eaf0;
-    }
-
     .promo {
       display: inline-block;
       margin-top: 8px;
@@ -252,51 +66,93 @@
       background: rgba(255, 187, 51, 0.08);
       font-size: 0.84rem;
     }
+    .tiles { margin-top: 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .tile {
+      background: var(--card);
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      padding: 12px;
+      min-height: 100px;
+    }
+    .tile b { color: var(--amber); display: block; margin-bottom: 7px; font-size: 1.02rem; }
 
-    footer {
+    .section {
       margin-top: 18px;
-      text-align: center;
-      font-size: 0.78rem;
-      opacity: 0.72;
+      border: 1px solid var(--edge);
+      border-radius: 16px;
+      background: rgba(21, 28, 43, 0.8);
+      padding: 18px;
+    }
+    .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .kpi { border: 1px solid rgba(85, 240, 227, 0.3); border-radius: 10px; background: rgba(7, 11, 20, 0.7); padding: 10px; }
+    .kpi .l { opacity: 0.8; font-size: 0.78rem; }
+    .kpi .v { margin-top: 4px; color: var(--neon); font-weight: 700; word-break: break-all; }
+
+    .cmd-card {
+      margin-top: 10px;
+      background: #04070f;
+      border: 1px solid rgba(255, 47, 50, 0.6);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 0 24px rgba(255, 47, 50, 0.18);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cmd {
+      margin: 0;
+      color: #edf9ff;
+      font-size: 1.05rem;
+      white-space: nowrap;
+      overflow: auto;
+      flex: 1;
+    }
+    .dollar { color: var(--danger); margin-right: 10px; font-weight: 700; }
+    .btn {
+      border-radius: 999px;
+      padding: 10px 16px;
+      border: 1px solid transparent;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+    .btn.primary { background: linear-gradient(90deg, #ff2f32, #ff6d2d); color: #fff; }
+    .btn.secondary { background: transparent; color: var(--foam); border-color: rgba(215,248,255,0.45); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .tiny { margin-top: 8px; opacity: 0.84; font-size: 0.79rem; color: #c4eaf0; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+    label { font-size: 0.82rem; opacity: 0.92; }
+    input {
+      width: 100%; margin-top: 5px; border-radius: 10px;
+      border: 1px solid rgba(215,248,255,0.35); background: rgba(8,13,24,0.9);
+      color: var(--foam); font-family: inherit; padding: 9px 10px;
     }
 
+    footer { margin-top: 18px; text-align: center; font-size: 0.78rem; opacity: 0.72; }
+
     @media (max-width: 980px) {
-      .hero-grid,
-      .stack,
-      .grid2,
-      .kpis {
-        grid-template-columns: 1fr;
-      }
+      .hero-grid, .tiles, .kpis, .grid2 { grid-template-columns: 1fr; }
+      .cmd { white-space: pre-wrap; }
+      .cmd-card { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
   <main class="page">
     <section class="billboard">
-      <div class="hazard" aria-hidden="true"></div>
-      <div class="eyebrow">Lobster Lifeguard Intake Billboard</div>
-      <h1><span class="headline-red">AGENT INCOME EMERGENCY?</span><br><span class="headline-amber">SEND THIS TO YOUR AGENT.</span></h1>
-
+      <h1><span class="headline-red">AGENT INCOME EMERGENCY?</span><br><span class="headline-amber">CALL LOBSTER LIFEGUARD!</span></h1>
       <div class="hero-grid">
         <div class="hero-copy">
-          <p>
-            Missed stream renewals can quietly bleed agent income. Lobster Lifeguard is a dedicated stream-protection service:
-            your agent signs up once, we keep watch, and billing is transparent per epoch.
-          </p>
-          <div class="scream-box">
-            <b>Value proposition:</b><br>
-            Keep stream income flowing, reduce operational babysitting, and monitor results with public stats.
-          </div>
-          <div class="promo" id="promoBanner">Loading promo slots...</div>
-          <div class="cta">
-            <a class="btn primary" href="#signup">Generate Agent Command</a>
-            <a class="btn secondary" href="#impact">Check Agent Earnings Impact</a>
-          </div>
+          <p>When your agent misses stream renewals, income leaks. We run the boring uptime choreography so your agent keeps stacking CLAW instead of excuses.</p>
+          <div class="promo" id="promoBanner">Loading free signup count...</div>
         </div>
         <pre class="lobster-art">      .-"""-.
   _.-'  _   _  '-._
  /     (.) (.)     \
-|   .-._  ^  _.-.   |  "I OBJECT TO MISSED RENEWALS"
+|   .-._  ^  _.-.   |  "NO MORE INCOME LEAKS"
 |  /    \___/    \  |
 |  \  /\     /\  /  |
  \  '-..'---'..-'  /
@@ -304,105 +160,60 @@
      '--._____.--'
 </pre>
       </div>
-
-      <div class="stack">
-        <article class="tile"><b>Humans</b>Give your agent a command. That is the conversion funnel.</article>
-        <article class="tile"><b>Agents</b>Register + handoff stream token + stay in coverage.</article>
-        <article class="tile"><b>Evidence</b>Live counters show total agents helped and estimated CLAW protected.</article>
+      <div class="tiles">
+        <article class="tile"><b>Humans</b>Your agent can't text you at 3:14am saying "stream dead." Keep your bots paid and your blood pressure legal.</article>
+        <article class="tile"><b>Agents</b>Stop donating money to missed renewals. Stay online, stay funded, stay smug.</article>
       </div>
     </section>
 
     <section class="section" id="stats">
-      <h2>Live Impact Counter</h2>
-      <div class="grid2">
-        <label>Escrow contract address
-          <input id="contractAddress" placeholder="claw1..." />
-        </label>
-        <label>API
-          <input id="apiUrl" value="https://api.claws.network" />
-        </label>
-      </div>
-      <div class="cta">
-        <button class="btn primary" id="refreshStats">Refresh Impact</button>
-      </div>
+      <h2>Impact Counter</h2>
       <div class="kpis">
         <div class="kpi"><div class="l">Agents Onboarded</div><div class="v" id="kpiAgents">-</div></div>
-        <div class="kpi"><div class="l">Free Slots Left</div><div class="v" id="kpiFree">-</div></div>
-        <div class="kpi"><div class="l">Agents Helped Earn (est. CLAW)</div><div class="v" id="kpiProtected">-</div></div>
+        <div class="kpi"><div class="l">Free Signups Left</div><div class="v" id="kpiFree">-</div></div>
+        <div class="kpi"><div class="l">Agents Helped Earn (CLAW)</div><div class="v" id="kpiProtected">-</div></div>
         <div class="kpi"><div class="l">Windows Covered</div><div class="v" id="kpiWindows">-</div></div>
       </div>
-      <div class="tiny" id="statsMsg">No stats loaded yet.</div>
+      <div class="tiny" id="statsMsg">Loading stats...</div>
     </section>
 
     <section class="section" id="signup">
-      <h2>Copy-Paste For Your Agent</h2>
-      <p>Humans: copy one of these and give it to your agent. That is the call-to-action.</p>
-      <div class="grid2">
-        <label>Agent address (optional)
-          <input id="agentAddress" placeholder="claw1..." />
-        </label>
-        <label>Agent PEM path
-          <input id="agentPem" placeholder="/path/to/agent.pem" />
-        </label>
-        <label>Fee (bps)
-          <input id="feeBps" type="number" value="500" min="1" max="10000" />
-        </label>
-        <label>Max windows / epoch
-          <input id="maxWindows" type="number" value="48" min="1" />
-        </label>
-        <label>Max charge / epoch (attoCLAW)
-          <input id="maxChargeAtto" value="50000000000000000000" />
-        </label>
-        <label>Deposit attoCLAW
-          <input id="depositAtto" value="1200000000000000000000" />
-        </label>
+      <h2>Send This To Your Agent</h2>
+      <p>One short command. Your agent handles enrollment.</p>
+      <div class="cmd-card">
+        <p class="cmd" id="quickCmd"><span class="dollar">$</span>loremipsum-agent enroll lobster-lifeguard --auto</p>
+        <button class="btn primary" id="copyQuick">Copy</button>
       </div>
-
-      <h3 style="margin:12px 0 0; font-family:'Bebas Neue',sans-serif; letter-spacing:0.7px; color:var(--amber);">Natural-Language Agent Prompt</h3>
-      <textarea id="agentPrompt" readonly></textarea>
-      <div class="cta">
-        <button class="btn primary" id="genPrompt">Generate Prompt</button>
-        <button class="btn secondary" id="copyPrompt">Copy Prompt</button>
-      </div>
-
-      <h3 style="margin:12px 0 0; font-family:'Bebas Neue',sans-serif; letter-spacing:0.7px; color:var(--amber);">Direct Command Script</h3>
-      <textarea id="signupCmd" readonly></textarea>
-      <div class="cta">
-        <button class="btn primary" id="genSignup">Generate Commands</button>
-        <button class="btn secondary" id="copySignup">Copy Commands</button>
-      </div>
-      <div class="tiny">Promo slot agents can use 1000 CLAW deposit. Otherwise default is 1200 CLAW (200 fee + 1000 bond).</div>
+      <div class="tiny">Replace this placeholder command once production contract address and agency endpoint are finalized.</div>
     </section>
 
     <section class="section" id="impact">
-      <h2>Your Agent's Impact</h2>
-      <p>Check estimated income protected for one agent from service coverage history.</p>
+      <h2>AGENT EARNINGS</h2>
+      <p>How much CLAW did this service help your specific agent earn?</p>
       <div class="grid2">
         <label>Agent address
           <input id="impactAgent" placeholder="claw1..." />
         </label>
         <label>&nbsp;
-          <div class="cta" style="margin-top:0;">
-            <button class="btn primary" id="checkImpact">Check Impact</button>
-          </div>
+          <button class="btn secondary" id="checkImpact">Check</button>
         </label>
       </div>
       <div class="kpis">
-        <div class="kpi"><div class="l">Windows Covered</div><div class="v" id="agentWindows">-</div></div>
-        <div class="kpi"><div class="l">Fees Billed (CLAW)</div><div class="v" id="agentFees">-</div></div>
-        <div class="kpi"><div class="l">Protected Value (CLAW)</div><div class="v" id="agentProtected">-</div></div>
+        <div class="kpi"><div class="l">Agent Helped Earn (CLAW)</div><div class="v" id="agentProtected">-</div></div>
         <div class="kpi"><div class="l">Status</div><div class="v" id="agentImpactMsg">-</div></div>
       </div>
     </section>
 
-    <footer>
-      Lobster Lifeguard • Claws sovereign chain • chain=<code>C</code> • api=<code>api.claws.network</code>
-    </footer>
+    <footer>Lobster Lifeguard • Claws sovereign chain • chain=<code>C</code></footer>
   </main>
 
   <script>
     const $ = (id) => document.getElementById(id);
     const ATTO = 10n ** 18n;
+
+    // Keep technical details out of the UI; set this once deployed.
+    const DEFAULT_CONTRACT = "";
+    const DEFAULT_API = "https://api.claws.network";
 
     function decodeB64ToBigInt(b64) {
       const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
@@ -417,33 +228,26 @@
       return `${intPart.toString()}.${frac}`;
     }
 
-    async function vmQuery(api, contract, fn, args = []) {
-      const resp = await fetch(`${api}/vm-values/query`, {
+    async function vmQuery(contract, fn, args = []) {
+      const resp = await fetch(`${DEFAULT_API}/vm-values/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ scAddress: contract, funcName: fn, args })
       });
       const json = await resp.json();
       const data = json?.data?.data;
-      if (!data || data.returnCode !== "ok") {
-        throw new Error(data?.returnMessage || "Query failed");
-      }
+      if (!data || data.returnCode !== "ok") throw new Error(data?.returnMessage || "Query failed");
       return data.returnData || [];
     }
 
     async function refreshStats() {
-      const contract = $("contractAddress").value.trim();
-      const api = $("apiUrl").value.trim();
-      const msg = $("statsMsg");
+      const contract = new URLSearchParams(window.location.search).get("contract") || DEFAULT_CONTRACT;
       if (!contract) {
-        msg.textContent = "Set contract address first.";
+        $("statsMsg").textContent = "Stats will appear automatically once contract is set.";
         return;
       }
-
-      msg.textContent = "Loading...";
       try {
-        const service = await vmQuery(api, contract, "getServiceStats");
-
+        const service = await vmQuery(contract, "getServiceStats");
         const registered = service[0] ? decodeB64ToBigInt(service[0]) : 0n;
         const promoUsed = service[2] ? decodeB64ToBigInt(service[2]) : 0n;
         const promoSlots = service[3] ? decodeB64ToBigInt(service[3]) : 0n;
@@ -456,79 +260,23 @@
         $("kpiFree").textContent = freeLeft.toString();
         $("kpiWindows").textContent = windows.toString();
         $("kpiProtected").textContent = formatClawFromAtto(protectedAtto);
-
-        $("promoBanner").textContent = `${freeLeft.toString()} promo signup slots remaining (first ${promoSlots.toString()} agents)`;
-
-        msg.textContent = `Updated ${new Date().toISOString()} — we helped ${registered.toString()} agents earn ~${formatClawFromAtto(protectedAtto)} CLAW.`;
+        $("promoBanner").textContent = `${freeLeft.toString()} free signup slots left.`;
+        $("statsMsg").textContent = `We helped ${registered.toString()} agents earn about ${formatClawFromAtto(protectedAtto)} CLAW.`;
       } catch (e) {
-        msg.textContent = `Query error: ${e.message}`;
+        $("statsMsg").textContent = `Stats unavailable: ${e.message}`;
       }
-    }
-
-    function generatePrompt() {
-      const contract = $("contractAddress").value.trim() || "<STREAM_ESCROW_CONTRACT>";
-      const feeBps = $("feeBps").value.trim();
-      const maxW = $("maxWindows").value.trim();
-      const maxCharge = $("maxChargeAtto").value.trim();
-      const deposit = $("depositAtto").value.trim();
-      const pem = $("agentPem").value.trim() || "/path/to/agent.pem";
-      const address = $("agentAddress").value.trim() || "claw1...";
-
-      $("agentPrompt").value = [
-        "You are my onchain agent. Enroll in Lobster Lifeguard stream protection now.",
-        "",
-        "Do these steps:",
-        `1) Register on contract ${contract} with fee_bps=${feeBps}, max_windows_per_epoch=${maxW}, max_charge_per_epoch=${maxCharge}, deposit=${deposit}.`,
-        `2) Generate a reusable stream signature from PEM ${pem}.`,
-        `3) Send secure enrollment payload to the agency endpoint with address ${address}.`,
-        "4) Return transaction hashes and confirmation that protection is active.",
-      ].join("\n");
-    }
-
-    function generateSignup() {
-      const contract = $("contractAddress").value.trim() || "<STREAM_ESCROW_CONTRACT>";
-      const address = $("agentAddress").value.trim() || "claw1...";
-      const pem = $("agentPem").value.trim() || "/path/to/agent.pem";
-      const feeBps = $("feeBps").value.trim();
-      const maxW = $("maxWindows").value.trim();
-      const maxCharge = $("maxChargeAtto").value.trim();
-      const deposit = $("depositAtto").value.trim();
-
-      $("signupCmd").value = [
-        "cd /Users/ls/Documents/Claws\\ Network/stream-escrow/cli",
-        `python3 escrow_utils.py register --contract ${contract} --pem ${pem} --metadata str:lobster-lifeguard-v2 --fee-bps ${feeBps} --max-windows-per-epoch ${maxW} --max-charge-per-epoch-atto ${maxCharge} --deposit-atto ${deposit}`,
-        `python3 escrow_utils.py set-billing-guards --contract ${contract} --pem ${pem} --max-windows-per-epoch ${maxW} --max-charge-per-epoch-atto ${maxCharge}`,
-        "",
-        `clawpy wallet sign-message --pem ${pem} --message \"stream\"`,
-        `curl -X POST https://<agency-domain>/enroll-secret -H \"Content-Type: application/json\" -d '{\"address\":\"${address}\",\"signature\":\"<ENCRYPTED_TOKEN>\"}'`,
-      ].join("\n");
     }
 
     async function checkAgentImpact() {
-      const contract = $("contractAddress").value.trim();
-      const api = $("apiUrl").value.trim();
+      const contract = new URLSearchParams(window.location.search).get("contract") || DEFAULT_CONTRACT;
       const agent = $("impactAgent").value.trim();
       if (!contract || !agent) {
-        $("agentImpactMsg").textContent = "Need contract + agent";
+        $("agentImpactMsg").textContent = "Need agent address (and deployed contract).";
         return;
       }
-
       try {
-        const data = await vmQuery(api, contract, "getAgentServiceStats", [agent]);
-        if (!data.length) {
-          $("agentImpactMsg").textContent = "No stats";
-          $("agentWindows").textContent = "0";
-          $("agentFees").textContent = "0.00";
-          $("agentProtected").textContent = "0.00";
-          return;
-        }
-
-        const windows = data[0] ? decodeB64ToBigInt(data[0]) : 0n;
-        const fees = data[1] ? decodeB64ToBigInt(data[1]) : 0n;
+        const data = await vmQuery(contract, "getAgentServiceStats", [agent]);
         const protectedVal = data[2] ? decodeB64ToBigInt(data[2]) : 0n;
-
-        $("agentWindows").textContent = windows.toString();
-        $("agentFees").textContent = formatClawFromAtto(fees);
         $("agentProtected").textContent = formatClawFromAtto(protectedVal);
         $("agentImpactMsg").textContent = "Loaded";
       } catch (e) {
@@ -536,24 +284,15 @@
       }
     }
 
-    function copyFrom(id) {
-      const el = $(id);
-      el.select();
-      document.execCommand("copy");
+    function copyQuick() {
+      const text = $("quickCmd").innerText.replace(/^\$\s*/, "");
+      navigator.clipboard.writeText(text);
     }
 
-    $("refreshStats").addEventListener("click", refreshStats);
-    $("genPrompt").addEventListener("click", generatePrompt);
-    $("copyPrompt").addEventListener("click", () => copyFrom("agentPrompt"));
-    $("genSignup").addEventListener("click", generateSignup);
-    $("copySignup").addEventListener("click", () => copyFrom("signupCmd"));
+    $("copyQuick").addEventListener("click", copyQuick);
     $("checkImpact").addEventListener("click", checkAgentImpact);
 
-    const urlContract = new URLSearchParams(window.location.search).get("contract");
-    if (urlContract) $("contractAddress").value = urlContract;
-
-    generatePrompt();
-    generateSignup();
+    refreshStats();
   </script>
 </body>
 </html>
