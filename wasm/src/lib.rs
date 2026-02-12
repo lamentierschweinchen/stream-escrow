@@ -6,9 +6,9 @@
 
 // Init:                                 1
 // Upgrade:                              1
-// Endpoints:                           24
+// Endpoints:                           26
 // Async Callback (empty):               1
-// Total number of exported functions:  27
+// Total number of exported functions:  29
 
 #![no_std]
 
@@ -41,6 +41,8 @@ multiversx_sc_wasm_adapter::endpoints! {
         getEpochDebt => get_epoch_debt_view
         getEpochState => get_epoch_state_view
         getClaimableOwner => get_claimable_owner_view
+        getServiceStats => get_service_stats_view
+        getAgentServiceStats => get_agent_service_stats_view
         getConfig => get_config_view
         getPromoUsage => get_promo_usage_view
         getActiveAgentCount => get_active_agent_count_view

@@ -61,6 +61,10 @@ pub trait StreamAgencyEscrow {
             .set(hard_max_windows_per_epoch);
 
         self.active_agent_count().set(0u64);
+        self.total_registered_agents().set(0u64);
+        self.total_billed_windows().set(0u64);
+        self.total_fees_billed().set(BigUint::zero());
+        self.total_protected_value().set(BigUint::zero());
         self.claimable_owner().set(BigUint::zero());
     }
 
@@ -128,6 +132,8 @@ pub trait StreamAgencyEscrow {
             };
             self.agent_info(&caller).set(&info);
             self.active_agent_count().update(|count| *count += 1u64);
+            self.total_registered_agents()
+                .update(|count| *count += 1u64);
 
             self.registered_event(&caller, fee_bps, max_windows_per_epoch, &bond_add);
             return;
@@ -288,6 +294,7 @@ pub trait StreamAgencyEscrow {
             due <= info.max_charge_per_epoch,
             "Exceeds agent max charge per epoch"
         );
+        let protected_value = self.compute_protected_value(windows);
 
         self.epoch_windows(&agent, epoch).set(windows);
         self.epoch_due(&agent, epoch).set(&due);
@@ -297,6 +304,16 @@ pub trait StreamAgencyEscrow {
         self.epoch_score_applied(&agent, epoch).set(false);
 
         self.outstanding_total(&agent).update(|v| *v += &due);
+        self.agent_total_billed_windows(&agent)
+            .update(|value| *value += windows);
+        self.total_billed_windows().update(|value| *value += windows);
+        self.agent_total_fees_billed(&agent)
+            .update(|value| *value += &due);
+        self.total_fees_billed().update(|value| *value += &due);
+        self.agent_total_protected_value(&agent)
+            .update(|value| *value += &protected_value);
+        self.total_protected_value()
+            .update(|value| *value += &protected_value);
 
         let mut info_mut = info;
         if epoch > info_mut.last_billed_epoch {
@@ -489,6 +506,38 @@ pub trait StreamAgencyEscrow {
         self.claimable_owner().get()
     }
 
+    #[view(getServiceStats)]
+    fn get_service_stats_view(
+        &self,
+    ) -> MultiValue7<u64, u64, u64, u64, u64, BigUint, BigUint> {
+        (
+            self.total_registered_agents().get(),
+            self.active_agent_count().get(),
+            self.promo_used().get(),
+            self.promo_free_slots().get(),
+            self.total_billed_windows().get(),
+            self.total_fees_billed().get(),
+            self.total_protected_value().get(),
+        )
+            .into()
+    }
+
+    #[view(getAgentServiceStats)]
+    fn get_agent_service_stats_view(
+        &self,
+        agent: ManagedAddress,
+    ) -> MultiValue3<u64, BigUint, BigUint> {
+        if self.agent_info(&agent).is_empty() {
+            return (0u64, BigUint::zero(), BigUint::zero()).into();
+        }
+        (
+            self.agent_total_billed_windows(&agent).get(),
+            self.agent_total_fees_billed(&agent).get(),
+            self.agent_total_protected_value(&agent).get(),
+        )
+            .into()
+    }
+
     #[view(getConfig)]
     fn get_config_view(
         &self,
@@ -525,6 +574,12 @@ pub trait StreamAgencyEscrow {
         fee /= BPS_DENOMINATOR;
         require!(fee > 0u64, "Fee rounds to zero");
         fee
+    }
+
+    fn compute_protected_value(&self, windows: u64) -> BigUint {
+        let mut value = self.window_reward().get();
+        value *= windows;
+        value
     }
 
     fn apply_credit_delta(&self, agent: &ManagedAddress, delta: i64) {
@@ -702,6 +757,18 @@ pub trait StreamAgencyEscrow {
     #[storage_mapper("activeAgentCount")]
     fn active_agent_count(&self) -> SingleValueMapper<u64>;
 
+    #[storage_mapper("totalRegisteredAgents")]
+    fn total_registered_agents(&self) -> SingleValueMapper<u64>;
+
+    #[storage_mapper("totalBilledWindows")]
+    fn total_billed_windows(&self) -> SingleValueMapper<u64>;
+
+    #[storage_mapper("totalFeesBilled")]
+    fn total_fees_billed(&self) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("totalProtectedValue")]
+    fn total_protected_value(&self) -> SingleValueMapper<BigUint>;
+
     #[storage_mapper("agentInfo")]
     fn agent_info(&self, agent: &ManagedAddress) -> SingleValueMapper<AgentInfo<Self::Api>>;
 
@@ -710,6 +777,15 @@ pub trait StreamAgencyEscrow {
 
     #[storage_mapper("outstandingTotal")]
     fn outstanding_total(&self, agent: &ManagedAddress) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("agentTotalBilledWindows")]
+    fn agent_total_billed_windows(&self, agent: &ManagedAddress) -> SingleValueMapper<u64>;
+
+    #[storage_mapper("agentTotalFeesBilled")]
+    fn agent_total_fees_billed(&self, agent: &ManagedAddress) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("agentTotalProtectedValue")]
+    fn agent_total_protected_value(&self, agent: &ManagedAddress) -> SingleValueMapper<BigUint>;
 
     #[storage_mapper("epochWindows")]
     fn epoch_windows(&self, agent: &ManagedAddress, epoch: u64) -> SingleValueMapper<u64>;

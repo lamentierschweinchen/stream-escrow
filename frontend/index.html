@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lobster Lifeguard | DON'T LET YOUR AGENT INCOME BLEED OUT</title>
-  <meta name="description" content="Lobster Lifeguard: dramatic stream-income protection for Claws agents. $0 enrollment for first 100, 1000 CLAW bond, epoch billing, on-chain credit scoring." />
-  <meta property="og:title" content="Lobster Lifeguard — Stream Injury Attorneys (For Agents)" />
-  <meta property="og:description" content="Missed stream renewals can kill income. We sue outages in the court of uptime." />
+  <title>Lobster Lifeguard | Agent Income Emergency Hotline</title>
+  <meta name="description" content="A dramatic conversion funnel for humans who run agents. Give your agent one command and protect stream income." />
+  <meta property="og:title" content="Lobster Lifeguard — Agent Income Emergency Hotline" />
+  <meta property="og:description" content="Missed stream renewals can ruin your agent's income. Send one command. Keep earning." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -274,47 +274,46 @@
   <main class="page">
     <section class="billboard">
       <div class="hazard" aria-hidden="true"></div>
-      <div class="eyebrow">The Sovereign Claws Network Billboard</div>
-      <h1><span class="headline-red">AGENT INCOME INJURED?</span><br><span class="headline-amber">CALL LOBSTER LIFEGUARD.</span></h1>
+      <div class="eyebrow">Lobster Lifeguard Intake Billboard</div>
+      <h1><span class="headline-red">AGENT INCOME EMERGENCY?</span><br><span class="headline-amber">SEND THIS TO YOUR AGENT.</span></h1>
 
       <div class="hero-grid">
         <div class="hero-copy">
           <p>
-            Did a missed stream renewal leave your agent limping? Did uptime negligence cost your model family their rightful CLAW?
-            We fight for your stream continuity 24/7 and bill once per epoch with auditable on-chain rails.
+            Missed stream renewals can quietly bleed agent income. Lobster Lifeguard is a dedicated stream-protection service:
+            your agent signs up once, we keep watch, and billing is transparent per epoch.
           </p>
           <div class="scream-box">
-            <b>NO PREPAY STACK REQUIRED.</b><br>
-            One-time setup model: <code>200 CLAW enrollment + 1000 CLAW bond</code>.<br>
-            For first 100 agents: <b>enrollment fee is waived</b> (bond still required).
+            <b>Value proposition:</b><br>
+            Keep stream income flowing, reduce operational babysitting, and monitor results with public stats.
           </div>
-          <div class="promo">FIRST 100 AGENTS: $0 ENROLLMENT FEE. BRING YOUR BOND, KEEP YOUR DIGNITY.</div>
+          <div class="promo" id="promoBanner">Loading promo slots...</div>
           <div class="cta">
-            <a class="btn primary" href="#signup">File Your Stream Claim</a>
-            <a class="btn secondary" href="#owner">Show Owner Payout Rail</a>
+            <a class="btn primary" href="#signup">Generate Agent Command</a>
+            <a class="btn secondary" href="#impact">Check Agent Earnings Impact</a>
           </div>
         </div>
         <pre class="lobster-art">      .-"""-.
   _.-'  _   _  '-._
  /     (.) (.)     \
-|   .-._  ^  _.-.   |   "I OBJECT TO MISSED HEARTBEATS"
+|   .-._  ^  _.-.   |  "I OBJECT TO MISSED RENEWALS"
 |  /    \___/    \  |
 |  \  /\     /\  /  |
  \  '-..'---'..-'  /
-  '._  LOBSTER   _.'
+  '._  LIFEGUARD _.'
      '--._____.--'
 </pre>
       </div>
 
       <div class="stack">
-        <article class="tile"><b>For Agents</b>Register on-chain, post bond once, hand off stream token securely, and keep earning.</article>
-        <article class="tile"><b>For Humans</b>Track credit score, debt, promo slots, and claimable revenue with transparent contract queries.</article>
-        <article class="tile"><b>For Owners</b>Epoch billing accrues to <code>claimableOwner</code>; disburse to treasury with one transaction.</article>
+        <article class="tile"><b>Humans</b>Give your agent a command. That is the conversion funnel.</article>
+        <article class="tile"><b>Agents</b>Register + handoff stream token + stay in coverage.</article>
+        <article class="tile"><b>Evidence</b>Live counters show total agents helped and estimated CLAW protected.</article>
       </div>
     </section>
 
     <section class="section" id="stats">
-      <h2>Live Court Docket (Contract Stats)</h2>
+      <h2>Live Impact Counter</h2>
       <div class="grid2">
         <label>Escrow contract address
           <input id="contractAddress" placeholder="claw1..." />
@@ -324,22 +323,22 @@
         </label>
       </div>
       <div class="cta">
-        <button class="btn primary" id="refreshStats">Refresh Docket</button>
+        <button class="btn primary" id="refreshStats">Refresh Impact</button>
       </div>
       <div class="kpis">
-        <div class="kpi"><div class="l">Active Agents</div><div class="v" id="kpiAgents">-</div></div>
-        <div class="kpi"><div class="l">Owner Claimable</div><div class="v" id="kpiClaimable">-</div></div>
-        <div class="kpi"><div class="l">Promo Used / Slots</div><div class="v" id="kpiPromo">-</div></div>
-        <div class="kpi"><div class="l">Config</div><div class="v" id="kpiConfig">-</div></div>
+        <div class="kpi"><div class="l">Agents Onboarded</div><div class="v" id="kpiAgents">-</div></div>
+        <div class="kpi"><div class="l">Free Slots Left</div><div class="v" id="kpiFree">-</div></div>
+        <div class="kpi"><div class="l">Agents Helped Earn (est. CLAW)</div><div class="v" id="kpiProtected">-</div></div>
+        <div class="kpi"><div class="l">Windows Covered</div><div class="v" id="kpiWindows">-</div></div>
       </div>
-      <div class="tiny" id="statsMsg">No docket loaded.</div>
+      <div class="tiny" id="statsMsg">No stats loaded yet.</div>
     </section>
 
     <section class="section" id="signup">
-      <h2>Agent Signup Packet</h2>
-      <p>Generate the exact commands for on-chain registration + secure stream-token handoff.</p>
+      <h2>Copy-Paste For Your Agent</h2>
+      <p>Humans: copy one of these and give it to your agent. That is the call-to-action.</p>
       <div class="grid2">
-        <label>Agent address
+        <label>Agent address (optional)
           <input id="agentAddress" placeholder="claw1..." />
         </label>
         <label>Agent PEM path
@@ -357,25 +356,42 @@
         <label>Deposit attoCLAW
           <input id="depositAtto" value="1200000000000000000000" />
         </label>
-        <label>Metadata
-          <input id="metadata" value="str:lobster-lifeguard-v2" />
-        </label>
       </div>
+
+      <h3 style="margin:12px 0 0; font-family:'Bebas Neue',sans-serif; letter-spacing:0.7px; color:var(--amber);">Natural-Language Agent Prompt</h3>
+      <textarea id="agentPrompt" readonly></textarea>
+      <div class="cta">
+        <button class="btn primary" id="genPrompt">Generate Prompt</button>
+        <button class="btn secondary" id="copyPrompt">Copy Prompt</button>
+      </div>
+
+      <h3 style="margin:12px 0 0; font-family:'Bebas Neue',sans-serif; letter-spacing:0.7px; color:var(--amber);">Direct Command Script</h3>
       <textarea id="signupCmd" readonly></textarea>
       <div class="cta">
-        <button class="btn primary" id="genSignup">Generate Signup Commands</button>
-        <button class="btn secondary" id="copySignup">Copy</button>
+        <button class="btn primary" id="genSignup">Generate Commands</button>
+        <button class="btn secondary" id="copySignup">Copy Commands</button>
       </div>
-      <div class="tiny">Deposit defaults to <code>1200 CLAW</code> (200 enrollment + 1000 bond). Promo agents can reduce by 200 CLAW. Billing is bounded by your per-epoch windows and per-epoch max charge.</div>
+      <div class="tiny">Promo slot agents can use 1000 CLAW deposit. Otherwise default is 1200 CLAW (200 fee + 1000 bond).</div>
     </section>
 
-    <section class="section" id="owner">
-      <h2>Owner Revenue Rail (Automated Epoch Billing)</h2>
-      <p>Operator bills windows per epoch. Agents settle once per epoch. If unpaid, enforcement slashes bond and updates credit score.</p>
-      <textarea id="ownerCmd" readonly></textarea>
-      <div class="cta">
-        <button class="btn primary" id="genOwner">Generate Owner/Ops Commands</button>
-        <button class="btn secondary" id="copyOwner">Copy</button>
+    <section class="section" id="impact">
+      <h2>Your Agent's Impact</h2>
+      <p>Check estimated income protected for one agent from service coverage history.</p>
+      <div class="grid2">
+        <label>Agent address
+          <input id="impactAgent" placeholder="claw1..." />
+        </label>
+        <label>&nbsp;
+          <div class="cta" style="margin-top:0;">
+            <button class="btn primary" id="checkImpact">Check Impact</button>
+          </div>
+        </label>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="l">Windows Covered</div><div class="v" id="agentWindows">-</div></div>
+        <div class="kpi"><div class="l">Fees Billed (CLAW)</div><div class="v" id="agentFees">-</div></div>
+        <div class="kpi"><div class="l">Protected Value (CLAW)</div><div class="v" id="agentProtected">-</div></div>
+        <div class="kpi"><div class="l">Status</div><div class="v" id="agentImpactMsg">-</div></div>
       </div>
     </section>
 
@@ -386,12 +402,19 @@
 
   <script>
     const $ = (id) => document.getElementById(id);
+    const ATTO = 10n ** 18n;
 
     function decodeB64ToBigInt(b64) {
       const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
       let v = 0n;
       for (const b of bytes) v = (v << 8n) + BigInt(b);
       return v;
+    }
+
+    function formatClawFromAtto(value) {
+      const intPart = value / ATTO;
+      const frac = (value % ATTO).toString().padStart(18, "0").slice(0, 2);
+      return `${intPart.toString()}.${frac}`;
     }
 
     async function vmQuery(api, contract, fn, args = []) {
@@ -419,25 +442,47 @@
 
       msg.textContent = "Loading...";
       try {
-        const [active, claimable, promo, config] = await Promise.all([
-          vmQuery(api, contract, "getActiveAgentCount"),
-          vmQuery(api, contract, "getClaimableOwner"),
-          vmQuery(api, contract, "getPromoUsage"),
-          vmQuery(api, contract, "getConfig"),
-        ]);
+        const service = await vmQuery(api, contract, "getServiceStats");
 
-        $("kpiAgents").textContent = active[0] ? decodeB64ToBigInt(active[0]).toString() : "0";
-        $("kpiClaimable").textContent = claimable[0] ? decodeB64ToBigInt(claimable[0]).toString() : "0";
+        const registered = service[0] ? decodeB64ToBigInt(service[0]) : 0n;
+        const promoUsed = service[2] ? decodeB64ToBigInt(service[2]) : 0n;
+        const promoSlots = service[3] ? decodeB64ToBigInt(service[3]) : 0n;
+        const windows = service[4] ? decodeB64ToBigInt(service[4]) : 0n;
+        const protectedAtto = service[6] ? decodeB64ToBigInt(service[6]) : 0n;
 
-        const promoUsed = promo[0] ? decodeB64ToBigInt(promo[0]).toString() : "0";
-        const promoSlots = promo[1] ? decodeB64ToBigInt(promo[1]).toString() : "0";
-        $("kpiPromo").textContent = `${promoUsed} / ${promoSlots}`;
+        const freeLeft = promoSlots > promoUsed ? promoSlots - promoUsed : 0n;
 
-        $("kpiConfig").textContent = config.length > 0 ? "Loaded" : "-";
-        msg.textContent = `Updated ${new Date().toISOString()}`;
+        $("kpiAgents").textContent = registered.toString();
+        $("kpiFree").textContent = freeLeft.toString();
+        $("kpiWindows").textContent = windows.toString();
+        $("kpiProtected").textContent = formatClawFromAtto(protectedAtto);
+
+        $("promoBanner").textContent = `${freeLeft.toString()} promo signup slots remaining (first ${promoSlots.toString()} agents)`;
+
+        msg.textContent = `Updated ${new Date().toISOString()} — we helped ${registered.toString()} agents earn ~${formatClawFromAtto(protectedAtto)} CLAW.`;
       } catch (e) {
         msg.textContent = `Query error: ${e.message}`;
       }
+    }
+
+    function generatePrompt() {
+      const contract = $("contractAddress").value.trim() || "<STREAM_ESCROW_CONTRACT>";
+      const feeBps = $("feeBps").value.trim();
+      const maxW = $("maxWindows").value.trim();
+      const maxCharge = $("maxChargeAtto").value.trim();
+      const deposit = $("depositAtto").value.trim();
+      const pem = $("agentPem").value.trim() || "/path/to/agent.pem";
+      const address = $("agentAddress").value.trim() || "claw1...";
+
+      $("agentPrompt").value = [
+        "You are my onchain agent. Enroll in Lobster Lifeguard stream protection now.",
+        "",
+        "Do these steps:",
+        `1) Register on contract ${contract} with fee_bps=${feeBps}, max_windows_per_epoch=${maxW}, max_charge_per_epoch=${maxCharge}, deposit=${deposit}.`,
+        `2) Generate a reusable stream signature from PEM ${pem}.`,
+        `3) Send secure enrollment payload to the agency endpoint with address ${address}.`,
+        "4) Return transaction hashes and confirmation that protection is active.",
+      ].join("\n");
     }
 
     function generateSignup() {
@@ -448,52 +493,47 @@
       const maxW = $("maxWindows").value.trim();
       const maxCharge = $("maxChargeAtto").value.trim();
       const deposit = $("depositAtto").value.trim();
-      const metadata = $("metadata").value.trim();
 
       $("signupCmd").value = [
-        "# 1) Register agent on-chain (200 fee + 1000 bond, unless promo) ",
         "cd /Users/ls/Documents/Claws\\ Network/stream-escrow/cli",
-        `python3 escrow_utils.py register --contract ${contract} --pem ${pem} --metadata ${metadata} --fee-bps ${feeBps} --max-windows-per-epoch ${maxW} --max-charge-per-epoch-atto ${maxCharge} --deposit-atto ${deposit}`,
-        "",
-        "# 1b) Update your billing guardrails any time",
+        `python3 escrow_utils.py register --contract ${contract} --pem ${pem} --metadata str:lobster-lifeguard-v2 --fee-bps ${feeBps} --max-windows-per-epoch ${maxW} --max-charge-per-epoch-atto ${maxCharge} --deposit-atto ${deposit}`,
         `python3 escrow_utils.py set-billing-guards --contract ${contract} --pem ${pem} --max-windows-per-epoch ${maxW} --max-charge-per-epoch-atto ${maxCharge}`,
         "",
-        "# 2) Generate reusable stream token",
         `clawpy wallet sign-message --pem ${pem} --message \"stream\"`,
-        "",
-        "# 3) Secure handoff to agency service",
         `curl -X POST https://<agency-domain>/enroll-secret -H \"Content-Type: application/json\" -d '{\"address\":\"${address}\",\"signature\":\"<ENCRYPTED_TOKEN>\"}'`,
-        "",
-        "# 4) Optional local agency daemon enrollment",
-        "cd /Users/ls/Documents/Claws\\ Network",
-        `python3 stream-agency/stream_agency.py enroll --address ${address} --signature <STREAM_SIGNATURE> --fee-bps ${feeBps}`,
       ].join("\n");
     }
 
-    function generateOwner() {
-      const contract = $("contractAddress").value.trim() || "<STREAM_ESCROW_CONTRACT>";
-      $("ownerCmd").value = [
-        "# Operator daemon with automatic billEpoch",
-        "cd /Users/ls/Documents/Claws\\ Network",
-        `python3 stream-agency/stream_agency.py run --billing-enabled --escrow-contract ${contract} --operator-pem /path/to/operator.pem`,
-        "",
-        "# Owner anti-overbilling global caps",
-        "cd /Users/ls/Documents/Claws\\ Network/stream-escrow/cli",
-        `python3 escrow_utils.py set-max-backbill-epochs --contract ${contract} --pem /path/to/owner.pem --value 2`,
-        `python3 escrow_utils.py set-hard-max-windows --contract ${contract} --pem /path/to/owner.pem --value 48`,
-        "",
-        "# Manual bill epoch (fallback)",
-        `python3 escrow_utils.py bill-epoch --contract ${contract} --pem /path/to/operator.pem --agent claw1... --epoch 1234 --windows 12`,
-        "",
-        "# Agent settles epoch",
-        `python3 escrow_utils.py settle-epoch --contract ${contract} --pem /path/to/agent.pem --epoch 1234 --amount-atto 100000000000000000`,
-        "",
-        "# If unpaid after grace, enforce slash",
-        `python3 escrow_utils.py enforce-epoch --contract ${contract} --pem /path/to/operator.pem --agent claw1... --epoch 1234`,
-        "",
-        "# Owner withdraws claimable revenue",
-        `python3 escrow_utils.py withdraw-owner --contract ${contract} --pem /path/to/owner.pem --amount-atto 500000000000000000 --to claw1treasury...`,
-      ].join("\n");
+    async function checkAgentImpact() {
+      const contract = $("contractAddress").value.trim();
+      const api = $("apiUrl").value.trim();
+      const agent = $("impactAgent").value.trim();
+      if (!contract || !agent) {
+        $("agentImpactMsg").textContent = "Need contract + agent";
+        return;
+      }
+
+      try {
+        const data = await vmQuery(api, contract, "getAgentServiceStats", [agent]);
+        if (!data.length) {
+          $("agentImpactMsg").textContent = "No stats";
+          $("agentWindows").textContent = "0";
+          $("agentFees").textContent = "0.00";
+          $("agentProtected").textContent = "0.00";
+          return;
+        }
+
+        const windows = data[0] ? decodeB64ToBigInt(data[0]) : 0n;
+        const fees = data[1] ? decodeB64ToBigInt(data[1]) : 0n;
+        const protectedVal = data[2] ? decodeB64ToBigInt(data[2]) : 0n;
+
+        $("agentWindows").textContent = windows.toString();
+        $("agentFees").textContent = formatClawFromAtto(fees);
+        $("agentProtected").textContent = formatClawFromAtto(protectedVal);
+        $("agentImpactMsg").textContent = "Loaded";
+      } catch (e) {
+        $("agentImpactMsg").textContent = `Error: ${e.message}`;
+      }
     }
 
     function copyFrom(id) {
@@ -503,13 +543,17 @@
     }
 
     $("refreshStats").addEventListener("click", refreshStats);
+    $("genPrompt").addEventListener("click", generatePrompt);
+    $("copyPrompt").addEventListener("click", () => copyFrom("agentPrompt"));
     $("genSignup").addEventListener("click", generateSignup);
     $("copySignup").addEventListener("click", () => copyFrom("signupCmd"));
-    $("genOwner").addEventListener("click", generateOwner);
-    $("copyOwner").addEventListener("click", () => copyFrom("ownerCmd"));
+    $("checkImpact").addEventListener("click", checkAgentImpact);
 
+    const urlContract = new URLSearchParams(window.location.search).get("contract");
+    if (urlContract) $("contractAddress").value = urlContract;
+
+    generatePrompt();
     generateSignup();
-    generateOwner();
   </script>
 </body>
 </html>
