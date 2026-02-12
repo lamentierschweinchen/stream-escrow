@@ -180,6 +180,11 @@
       font-weight: 700;
       font-size: 0.94rem;
       opacity: 0.75;
+      border: 0;
+      background: transparent;
+      color: var(--foam);
+      font-family: inherit;
+      cursor: pointer;
     }
     .tab.active {
       background: linear-gradient(90deg, var(--red), var(--orange));
@@ -198,11 +203,12 @@
     }
     .cmd {
       margin: 0;
-      white-space: nowrap;
+      white-space: pre-wrap;
       overflow: auto;
       flex: 1;
       font-size: 1rem;
       color: #ecfaff;
+      line-height: 1.45;
     }
     .dollar { color: var(--red); margin-right: 10px; font-weight: 700; }
 
@@ -298,15 +304,15 @@
       <p>Short command. Copy. Paste. Income no longer drowns.</p>
       <div class="cmd-frame">
         <div class="cmd-tabs">
-          <div class="tab active">Lifeguard CLI</div>
-          <div class="tab">Manual Config</div>
+          <button type="button" class="tab active" id="tabCli">Lifeguard CLI</button>
+          <button type="button" class="tab" id="tabManual">Manual Config</button>
         </div>
         <div class="cmd-row">
-          <p class="cmd" id="quickCmd"><span class="dollar">$</span>npx lobster-lifeguard enroll --network claws --contract claw1qqqqqqqqqqqqqpgqnlglzrzv598wqgx6zlhjr6rky2k694jtkgcqdfq0ge --mode auto</p>
+          <pre class="cmd" id="quickCmd">$ npx lobster-lifeguard enroll --network claws --contract claw1qqqqqqqqqqqqqpgqnlglzrzv598wqgx6zlhjr6rky2k694jtkgcqdfq0ge --mode auto</pre>
           <button class="btn primary" id="copyQuick">Copy</button>
         </div>
       </div>
-      <div class="tiny">Live contract is wired in. Copy this and hand it to your agent runtime.</div>
+      <div class="tiny" id="signupHint">Live contract is wired in. Copy this and hand it to your agent runtime.</div>
     </section>
 
     <section class="section" id="impact">
@@ -334,6 +340,24 @@
 
     const DEFAULT_CONTRACT = "claw1qqqqqqqqqqqqqpgqnlglzrzv598wqgx6zlhjr6rky2k694jtkgcqdfq0ge";
     const DEFAULT_API = "https://api.claws.network";
+    const SIGNUP_MODES = {
+      cli: {
+        command: `$ npx lobster-lifeguard enroll --network claws --contract ${DEFAULT_CONTRACT} --mode auto`,
+        hint: "Live contract is wired in. Copy this and hand it to your agent runtime."
+      },
+      manual: {
+        command:
+`LOBSTER_LIFEGUARD_NETWORK=C
+LOBSTER_LIFEGUARD_API=https://api.claws.network
+LOBSTER_LIFEGUARD_CONTRACT=${DEFAULT_CONTRACT}
+LOBSTER_LIFEGUARD_FEE_BPS=500
+LOBSTER_LIFEGUARD_MAX_WINDOWS=48
+LOBSTER_LIFEGUARD_MAX_CHARGE_ATTO=50000000000000000000
+LOBSTER_LIFEGUARD_DEPOSIT_ATTO=1000000000000000000000`,
+        hint: "Manual config for agent runtimes without CLI wrappers."
+      }
+    };
+    let activeSignupMode = "cli";
 
     function decodeB64ToBigInt(b64) {
       const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
@@ -406,16 +430,31 @@
       }
     }
 
+    function setSignupMode(mode) {
+      activeSignupMode = mode;
+      const selected = SIGNUP_MODES[mode];
+      $("quickCmd").textContent = selected.command;
+      $("signupHint").textContent = selected.hint;
+
+      $("tabCli").classList.toggle("active", mode === "cli");
+      $("tabManual").classList.toggle("active", mode === "manual");
+    }
+
     async function copyQuick() {
-      const text = $("quickCmd").innerText.replace(/^\$\s*/, "");
+      const text = activeSignupMode === "cli"
+        ? $("quickCmd").innerText.replace(/^\$\s*/, "")
+        : $("quickCmd").innerText;
       await navigator.clipboard.writeText(text);
       $("copyQuick").textContent = "Copied";
       setTimeout(() => { $("copyQuick").textContent = "Copy"; }, 1500);
     }
 
+    $("tabCli").addEventListener("click", () => setSignupMode("cli"));
+    $("tabManual").addEventListener("click", () => setSignupMode("manual"));
     $("copyQuick").addEventListener("click", copyQuick);
     $("checkImpact").addEventListener("click", checkAgentImpact);
 
+    setSignupMode("cli");
     refreshStats();
   </script>
 </body>
